@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% block title %}CareCycle | Home{% endblock %}
+{% load static %}
+
+{% block body %}
+<style>
+    /* General Styling */
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .section-title {
+        font-size: 28px;
+        font-weight: bold;
+        color: #007bff;
+        margin-bottom: 20px;
+    }
+
+    /* Welcome Section */
+    .welcome-section {
+        background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+        padding: 50px 20px;
+        border-radius: 15px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    /* Carousel */
+    .carousel img {
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Product Cards */
+    .card {
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+        height: 160px;
+        object-fit: cover;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+    }
+
+    /* Buy Now Button */
+    .buy-now {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+    }
+
+    .buy-now:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+    }
+
+    /* How It Works Section */
+    .how-it-works {
+        background: linear-gradient(to right, #6a11cb, #2575fc);
+        color: white;
+        padding: 50px 20px;
+        border-radius: 15px;
+        text-align: center;
+    }
+</style>
+
+<!-- Welcome Section -->
+<section class="welcome-section section">
+    <div class="container">
+        <h1 class="display-5 fw-bold">Welcome to CareCycle</h1>
+        <p class="lead">Your one-stop destination for all types of medicines with quick and reliable service.</p>
+    </div>
+</section>
+
+<!-- Carousel Start -->
+<div class="container my-4">
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="3000">
+                <img src="{% static 'images/banner1.png' %}" class="d-block w-100 img-fluid" alt="Banner Image">
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+                <img src="{% static 'images/banner3.png' %}" class="d-block w-100 img-fluid" alt="Banner Image">
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+                <img src="{% static 'images/banner4.png' %}" class="d-block w-100 img-fluid" alt="Banner Image">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<!-- Carousel End -->
+
+<!-- Featured Products -->
+<section class="container my-4">
+    <h2 class="text-center section-title">Featured Medicines</h2>
+    
+    <!-- Messages Section -->
+    {% if messages %}
+    <div class="text-center">
+        {% for m in messages %}
+        <h5><mark>{{ m }}</mark></h5>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <div class="row">
+        {% for x in allMedicine %}
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <img src="{{ x.photo.url }}" class="card-img-top" alt="{{ x.name }}">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ x.name }}</h5>
+                    <p class="card-text"><b>Description:</b> {{ x.description }}</p>
+                    <p class="card-text"><b>Manufacturer:</b> {{ x.manufacturer }}</p>
+                    <p class="card-text"><b>Price:</b> ₹{{ x.price }}</p>
+                    <a href="{% url 'addtocart' x.medicineid %}" class="btn btn-primary">Add to Cart</a>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works">
+    <div class="container">
+        <h2>How It Works</h2>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <h4>🛍️ Browse Medicines</h4>
+                <p>Search from a wide range of healthcare products.</p>
+            </div>
+            <div class="col-md-4">
+                <a href="{% url 'showcarts' %}" class="btn btn-primary">🛒 View Cart</a>
+                
+                <p>Choose your medicines and place an order quickly.</p>
+            </div>
+            <div class="col-md-4">
+                <h4>🚚 Get Fast Delivery</h4>
+                <p>Receive your medicines at your doorstep on time.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

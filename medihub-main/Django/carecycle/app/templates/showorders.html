@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %} CareCycle | Select Address {% endblock %}
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <h1 class="text-center">Select Address for Payment</h1>
+        <form method="post" action="{% url 'process_payment' %}">
+            {% csrf_token %}
+            <div class="list-group">
+                {% for x in address %}
+                <div class="list-group-item">
+                    <input type="radio" name="selected_address" id="x_{{x.id}}" value="{{x.id}}" required>
+                    <label for="x_{{x.id}}">
+                        <strong>Mobile:</strong> {{x.mobile}}<br>
+                        <strong>Address:</strong> {{x.address}}<br>
+                        <strong>Pincode:</strong> {{x.pincode}}<br>
+                    </label>
+                </div>
+                {% empty %}
+                <div class="alert alert-warning">
+                    No saved address found!
+                </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Proceed to Payment</button>
+        </form>
+        <a href="{% url 'add_address' %}" class="btn btn-secondary mt-3">Add New Address</a>
+    </div>
+</div>
+
+{% endblock %}
