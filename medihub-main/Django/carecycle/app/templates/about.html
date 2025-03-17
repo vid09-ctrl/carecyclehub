@@ -2,15 +2,37 @@
 {% block title %}CareCycle | About{% endblock %}
 
 {% block body %}
-<div class="container mt-5">
+<style>
+    body {
+        background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    }
+    .about-container {
+        max-width: 900px;
+        margin: auto;
+        padding: 20px;
+    }
+    .card-custom {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    }
+    .section-title {
+        color: #0277bd;
+        font-weight: bold;
+    }
+    .icon {
+        color: #0288d1;
+    }
+</style>
+
+<div class="container about-container">
     <div class="row">
-        <!-- About Us Title -->
         <div class="col-12 text-center">
-            <h2 class="fw-bold text-primary">About Us</h2>
+            <h2 class="fw-bold section-title">About Us</h2>
             <hr class="w-25 mx-auto">
         </div>
 
-        <!-- About Us Description -->
         <div class="col-lg-12 mt-4">
             <p class="text-muted text-center fs-5 px-3">
                 Welcome to <b>CareCycle</b>, your trusted online pharmacy dedicated to providing a wide range of medicines with ease and reliability.  
@@ -21,9 +43,8 @@
             </p>
         </div>
 
-        <!-- Vision Section -->
         <div class="col-lg-6 col-md-12 mt-5">
-            <h2 class="text-success fw-bold text-center text-lg-start">Vision</h2>
+            <h2 class="section-title text-center text-lg-start">Vision</h2>
             <hr>
             <p class="text-muted text-center text-lg-start px-3">
                 Our vision is to revolutionize healthcare accessibility by becoming the most trusted and reliable online pharmacy.  
@@ -32,9 +53,8 @@
             </p>
         </div>
 
-        <!-- Mission Section -->
         <div class="col-lg-6 col-md-12 mt-5">
-            <h2 class="text-success fw-bold text-center text-lg-start">Mission</h2>
+            <h2 class="section-title text-center text-lg-start">Mission</h2>
             <hr>
             <p class="text-muted text-center text-lg-start px-3">
                 At <b>CareCycle</b>, our mission is to provide a seamless, secure, and reliable platform for accessing essential medicines. We are dedicated to:
@@ -55,24 +75,23 @@
             </ul>
         </div>
 
-        <!-- Stats Section -->
         <div class="col-md-4 mt-5">
             <div class="card text-center shadow p-4 border-0">
-                <h3 class="text-danger fw-bold">1000+</h3>
+                <h3 class="text-primary fw-bold">1000+</h3>
                 <h6 class="text-muted">Happy Customers</h6>
             </div>
         </div>
 
         <div class="col-md-4 mt-5">
             <div class="card text-center shadow p-4 border-0">
-                <h3 class="text-danger fw-bold">2000+</h3>
+                <h3 class="text-primary fw-bold">2000+</h3>
                 <h6 class="text-muted">Orders Delivered</h6>
             </div>
         </div>
 
         <div class="col-md-4 mt-5">
             <div class="card text-center shadow p-4 border-0">
-                <h3 class="text-danger fw-bold">600+</h3>
+                <h3 class="text-primary fw-bold">600+</h3>
                 <h6 class="text-muted">Products Available</h6>
             </div>
         </div>

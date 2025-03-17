@@ -2,61 +2,100 @@
 {% block title %}CareCycle | Contact{% endblock %}
 
 {% block body %}
-<div class="container mt-5">
+<style>
+    body {
+        background: linear-gradient(135deg, #e0f7fa, #b3e5fc);
+    }
+    
+    .contact-container {
+        max-width: 900px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .card-custom {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-custom {
+        background: #008080;
+        color: white;
+        font-weight: bold;
+        transition: 0.3s;
+        border-radius: 8px;
+    }
+
+    .btn-custom:hover {
+        background: #00a8a8;
+        transform: scale(1.05);
+    }
+
+    .form-control {
+        border-radius: 8px;
+        box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<div class="container contact-container">
     <div class="row">
         <!-- Google Map -->
         <div class="col-12 mb-4">
-            <div class="shadow rounded overflow-hidden">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.2227266692203!2d72.85332931041849!3d19.229122581932174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b187b227565b%3A0x6b501cc07463dd16!2sItvedant%20Education%20Pvt%20Ltd%20Borivali!5e0!3m2!1sen!2sin!4v1699870696849!5m2!1sen!2sin" 
-                    width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.1987929402244!2d72.83766207433325!3d19.05499535263333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c923313ad9fd%3A0x6a2fb4343c0c0f62!2sBandra%20Station%20(West)!5e0!3m2!1sen!2sin!4v1742287550659!5m2!1sen!2sin" 
+                width="100%" height="400" 
+                style="border:0; border-radius: 12px;" 
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
         
-        <!-- Contact Details & Form -->
-        <div class="col-lg-6 col-md-12 mt-3">
-            <h3 class="text-primary"><i class="bi bi-building-fill"></i> Our Office</h3>
-            <hr>
-            <p class="fs-5 text-muted">
-                <i class="bi bi-geo-alt-fill text-danger"></i> Bhandarkar Bhavan,<br>
-                Opposite Police Station,<br>
-                Borivali(W), Mumbai-400102
-            </p>
-            <h6><i class="bi bi-telephone-fill text-danger"></i> <b>Phone:</b> 43543543</h6>
-            <h6><i class="bi bi-envelope-fill text-danger"></i> <b>Email:</b> abc@gmail.com</h6>
+        <!-- Contact Details -->
+        <div class="col-lg-6 col-md-12">
+            <div class="card-custom">
+                <h3 class="text-primary"><i class="bi bi-building-fill"></i> Our Office</h3>
+                <hr>
+                <p class="fs-5 text-muted">
+                    <i class="bi bi-geo-alt-fill text-primary"></i> Bhandarkar Bhavan, Opposite Police Station,<br>
+                    Borivali(W), Mumbai-400102
+                </p>
+                <h6><i class="bi bi-telephone-fill text-primary"></i> <b>Phone:</b> 43543543</h6>
+                <h6><i class="bi bi-envelope-fill text-primary"></i> <b>Email:</b> abc@gmail.com</h6>
+            </div>
         </div>
 
         <!-- Contact Form -->
-        <div class="col-lg-6 col-md-12 mt-3">
-            <h3 class="text-primary"><i class="bi bi-question-circle-fill text-danger"></i> Get in Touch</h3>
-            <hr>
-            <form method="post" action="" class="p-4 shadow rounded bg-light">
-                <div class="mb-3">
-                    <label for="input1" class="form-label"><strong>Name</strong></label>
-                    <input type="text" class="form-control border-0 shadow-sm" id="input1" placeholder="Enter your name" required>
-                </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="card-custom">
+                <h3 class="text-primary"><i class="bi bi-question-circle-fill text-primary"></i> Get in Touch</h3>
+                <hr>
+                <form method="post" action="">
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Name</strong></label>
+                        <input type="text" class="form-control" placeholder="Enter your name" required>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="input2" class="form-label"><strong>Mobile</strong></label>
-                    <input type="tel" pattern="[0-9]{10}" class="form-control border-0 shadow-sm" id="input2" placeholder="Enter mobile number" required>
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Mobile</strong></label>
+                        <input type="tel" pattern="[0-9]{10}" class="form-control" placeholder="Enter mobile number" required>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="input3" class="form-label"><strong>Email</strong></label>
-                    <input type="email" class="form-control border-0 shadow-sm" id="input3" placeholder="Enter your email" required>
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Email</strong></label>
+                        <input type="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="input4" class="form-label"><strong>Message</strong></label>
-                    <textarea name="msg" class="form-control border-0 shadow-sm" id="input4" rows="4" placeholder="Write your message here..." required></textarea>
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Message</strong></label>
+                        <textarea name="msg" class="form-control" rows="4" placeholder="Write your message here..." required></textarea>
+                    </div>
 
-                <div class="text-center">
-                    <button type="submit" class="btn btn-danger w-100">Send Message</button>
-                </div>
-            </form>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-custom w-100">Send Message</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
