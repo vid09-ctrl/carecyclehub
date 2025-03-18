@@ -15,7 +15,7 @@ urlpatterns = [
     path("showcarts/", views.showcarts, name="showcarts"),
     path("addtocart/<int:medicineid>/", views.addtocart, name="addtocart"),
     path('removecart/<int:medicineid>/', views.removecart, name='removecart'),
-    path("update-qty/<int:qv>/<int:medicineid>/", views.updateqty, name="updateqty"),
+    path('update-qty/<int:qv>/<int:medicineid>/', views.updateqty, name='updateqty'),
     path("add-address/", views.addaddress, name="addaddress"),
     path("show-address/", views.showaddress, name="showaddress"),
 
