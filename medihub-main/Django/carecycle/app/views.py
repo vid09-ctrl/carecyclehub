@@ -111,32 +111,59 @@ def order(request):
 def forgotpass(req):
     if req.method == "GET":
         return render(req, "forgotpass.html")
-    
-    uname = req.POST.get("uname")
-    if User.objects.filter(username=uname).exists():
-        return redirect("resetpassword", uname=uname)
-    else:
-        messages.error(req, "User not found")
+
+    uname = req.POST.get("uname").strip()  # Trim extra spaces
+
+    if not uname:
+        messages.error(req, "Username cannot be empty!")
         return redirect("forgotpass")
 
+    user = User.objects.filter(username__iexact=uname).first()  # Case-insensitive check
+
+    if user:
+        return redirect("resetpassword", uname=user.username)
+    else:
+        messages.error(req, "User not found. Please check your username.")
+        return redirect("forgotpass")
 
 # Reset Password
 def resetpassword(req, uname):
     if req.method == "GET":
-        return render(req, "resetpassword.html")
+        return render(req, "resetpassword.html", {"uname": uname})
 
     upass = req.POST.get("new_password")
+    confirm_pass = req.POST.get("confirm_password")
+
     try:
-        userdata = User.objects.get(username=uname)
-        validate_password(upass)
+        userdata = User.objects.get(username=uname)  # Get user object
+
+        # Check if password fields are empty
+        if not upass or not confirm_pass:
+            messages.error(req, "Password fields cannot be empty.")
+            return redirect("resetpassword", uname=uname)
+
+        # Check if new password and confirm password match
+        if upass != confirm_pass:
+            messages.error(req, "Passwords do not match. Please try again.")
+            return redirect("resetpassword", uname=uname)
+
+        # Validate new password
+        validate_password(upass)  
+
+        # Set and save the new password
         userdata.set_password(upass)
         userdata.save()
+
+        messages.success(req, "Password reset successful! Please sign in with your new password.")
         return redirect("signin")
+
+    except User.DoesNotExist:
+        messages.error(req, "User does not exist.")
+        return redirect("signin")  # Redirect to signin if user not found
+
     except ValidationError as e:
-        messages.error(req, ", ".join(e.messages))
+        messages.error(req, ", ".join(e.messages))  # Display validation errors
         return redirect("resetpassword", uname=uname)
-
-
 # About Page
 def about(req):
     return render(req, "about.html")
